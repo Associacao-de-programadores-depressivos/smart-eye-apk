@@ -1,10 +1,9 @@
 import 'package:http/http.dart' as http;
 
-const String API_URL = "https://jsonplaceholder.typicode.com";
+const String API_URL = "http://192.168.1.4:8081";
 
 class API {
   static Future getDetections(int pageNumber) {
-    // @TODO: replace API_URL and route by the correct one.
-    return http.get(API_URL + "/photos?_page=$pageNumber");
+    return http.get(API_URL + "/esp32cam/detections?page=$pageNumber");
   }
 }
