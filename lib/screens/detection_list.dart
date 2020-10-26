@@ -34,7 +34,7 @@ class DetectionListState extends State<DetectionList> {
 
   static Future<dynamic> myBackgroundMessageHandler(
       Map<String, dynamic> message) async {
-    print("bg message");
+    print("Not working :(");
   }
 
   Future<void> refresh() async {
