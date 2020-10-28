@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
+import 'package:platform_device_id/platform_device_id.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/material.dart';
@@ -189,6 +191,22 @@ class DetectionListState extends State<DetectionList> {
     _firebaseMessaging.getToken().then((String token) {
       assert(token != null);
       print("Push Messaging token: $token");
+      PlatformDeviceId.getDeviceId.then((deviceId) {
+        var body = jsonEncode({"device_id": deviceId, "token": token});
+
+        API.registerFirebaseToken(body).then((resp) {
+          if (resp.statusCode == 200) {
+            print("Token registered succesfully");
+          } else {
+            print("Fucked up");
+            print(resp.body);
+          }
+        }).catchError((e) {
+          print(e);
+        });
+      }).catchError((e) {
+        print("Failed to get device Id $e");
+      });
     });
 
     try {
