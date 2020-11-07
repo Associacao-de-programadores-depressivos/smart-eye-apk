@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-const String API_URL = "http://192.168.1.4:8081";
+const String API_URL = "https://smarteye.notfab.net";
 
 class API {
   static Future getDetections(int pageNumber) {
