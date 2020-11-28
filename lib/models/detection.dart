@@ -33,9 +33,9 @@ class Detection {
   }
 
   String detectionText() {
-    initializeDateFormatting();
-    String day = DateFormat('dd/MM/yyyy').format(this.detectionTime);
-    String hour = DateFormat('kk:mm:ss').format(this.detectionTime);
+    DateTime brazilTime = this.detectionTime.subtract(Duration(hours: 3));
+    String day = DateFormat('dd/MM/yyyy').format(brazilTime);
+    String hour = DateFormat('kk:mm:ss').format(brazilTime);
     return "Pessoa detectada em $day às $hour";
   }
 
